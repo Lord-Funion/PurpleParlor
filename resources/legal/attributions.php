@@ -1,0 +1,10 @@
+<?php
+return [
+ 'title'=>'Asset Attributions','version'=>'draft-1','effective_date'=>'2026','summary'=>'Credits and license information for artwork, audio, fonts, and software assets used by {{SITE_NAME}}.','important_notice'=>'The Purple Parlor logo, crowned onion mark, game icons, slot symbols, card-back artwork, profile frame, textures, and interface illustrations included in this project are original project assets unless a later entry says otherwise.',
+ 'sections'=>[
+  ['heading'=>'Original Purple Parlor assets','items'=>['Purple Parlor crowned-onion logo — original project SVG — © 2026 Finn Lambert / Lord Funion — all rights reserved.','Crowned onion mark and favicon — original project SVG — © 2026 Finn Lambert / Lord Funion — all rights reserved.','Forty game catalog icons — original project SVG symbol set — © 2026 Finn Lambert / Lord Funion — all rights reserved.','Purple Parlor card back and Royal Onion profile frame — original project SVG — © 2026 Finn Lambert / Lord Funion — all rights reserved.','Velvet-style textures, lounge table illustration, CSS motifs, and theme palettes — original project work — all rights reserved.']],
+  ['heading'=>'Fonts','paragraphs'=>['The interface uses local system-font stacks and does not download fonts from a third-party CDN. Font availability and licensing are supplied by the visitor’s operating system.']],
+  ['heading'=>'Third-party software and provider assets','paragraphs'=>['PHP and Composer packages, if installed, remain under their respective licenses and are listed in docs/THIRD_PARTY_NOTICES.md. Official PayPal or Square payment interface assets may be loaded only when those providers are configured and remain governed by provider terms.']],
+  ['heading'=>'Future additions','paragraphs'=>['Before adding any third-party asset, record its name, creator, original source, exact license, attribution requirement, and modifications. Use only licenses compatible with commercial website use. Do not hotlink assets.']],
+ ],
+];
