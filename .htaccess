@@ -1,0 +1,22 @@
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_authz_core.c>
+  <FilesMatch "(?i)^(?:\..*|.*\.(?:env|ini|log|sql|sqlite|bak|zip)|composer\.(?:json|lock)|phpunit\.xml|LICENSE\.txt|README(?:_FIRST)?\.md)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Defense in depth for the last-resort layout where this project root is public.
+  RewriteRule ^(?:app|bin|config|database|deployment|docs|resources|storage|tests|vendor)(?:/|$) - [F,L,NC]
+
+  # Serve public assets without exposing the private application tree.
+  RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+  RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+  RewriteRule ^(.+)$ public/$1 [L]
+
+  RewriteRule ^ public/index.php [L]
+</IfModule>
