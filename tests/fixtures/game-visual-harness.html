@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" data-theme="purple-parlor" data-appearance="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Purple Parlor visual harness</title>
+  <link rel="stylesheet" href="/public/assets/css/parlor.css">
+  <link rel="stylesheet" href="/public/assets/css/game-visuals.css">
+  <link rel="stylesheet" href="/public/assets/css/plinko-board.css">
+  <style>
+    body { padding: 1rem; }
+    .harness-toolbar { width: min(100%, 76rem); display: flex; align-items: end; gap: 1rem; margin: 0 auto 1rem; }
+    .harness-toolbar label { flex: 1; }
+    .game-frame { width: min(100%, 76rem); margin: auto; grid-template-columns: 1fr; }
+  </style>
+</head>
+<body>
+  <div class="harness-toolbar">
+    <label class="field"><span>Visual</span><select id="game-picker"></select></label>
+    <button class="button button-ghost" id="replay" type="button">Replay</button>
+  </div>
+  <main class="game-frame" data-game-client data-game-name="Visual test">
+    <section class="game-stage">
+      <div class="game-visual-mount" id="visual-host" data-game-outcome></div>
+      <p class="sr-only" id="announcer" aria-live="polite" aria-atomic="true"></p>
+      <button class="button button-small game-skip-animation" id="skip" type="button">Skip animation</button>
+    </section>
+  </main>
+  <script type="module">
+    import { OutcomeRenderer } from '/public/assets/js/games/outcome-renderer.js';
+
+    const card = (rank, suit) => ({ rank, suit, code: `${rank}${suit[0]}`, label: `${rank} of ${suit}` });
+    const base = (slug, outcome, display, extra = {}) => ({
+      slug, roundId: `harness-${slug}`, outcome, display, result: display,
+      state: {}, complete: true, wager: 10, payout: 20, ...extra,
+    });
+    const plinkoMultipliers = [141000, 69000, 31000, 15000, 7900, 4500, 3000, 4500, 7900, 15000, 31000, 69000, 141000];
+    const bingoCard = Array.from({ length: 5 }, (_, row) => Array.from({ length: 5 }, (_, col) => col === 2 && row === 2 ? 0 : col * 15 + row + 1));
+    const samples = {
+      plinko: base('plinko', 'landed', { rows: 12, risk: 'medium', bin: 6, path: ['L','R','L','R','L','R','L','R','L','R','L','R'], multipliersBps: plinkoMultipliers, payoutMultiplierBps: 3000 }, { payout: 3 }),
+      'five-reel-video-slots': base('five-reel-video-slots', 'reel_win', { grid: [['crown','moon','book'],['crown','wild','lavender'],['crown','moon','book'],['wild','moon','ember'],['crown','scatter','onion']], lineWins: [{ line: 0, symbol: 'crown', count: 5, multiplierBps: 750000 }], scatters: 1, payoutMultiplierBps: 750000 }, { payout: 750 }),
+      'european-roulette': base('european-roulette', 'win', { pocket: '32', bet: 'red', selection: '', color: 'red', payoutMultiplierBps: 20000 }),
+      'prize-wheel': base('prize-wheel', 'prize', { segment: 11, segments: 16, label: '2.5x', segmentMultipliersBps: [0,2500,7500,7500,10000,15000,0,20000,2500,7500,0,25000,5000,10000,0,40000], payoutMultiplierBps: 25000 }, { payout: 25 }),
+      blackjack: base('blackjack', 'win', { playerCards: [card(14,'spades'),card(13,'hearts')], dealerCards: [card(10,'clubs'),card(8,'diamonds')], playerTotal: 21, dealerTotal: 18, payoutMultiplierBps: 20000 }),
+      'sic-bo': base('sic-bo', 'win', { dice: [4,4,4], sum: 12, triple: true, bet: 'triple', selection: 4, payoutMultiplierBps: 1810000 }, { payout: 1810 }),
+      'horse-racing': base('horse-racing', 'win', { pick: 2, winner: 2, finish: [2,0,4,1,5,3], horses: ['Lavender Bolt','Golden Onion','Velvet Comet','Cozy Ember','Moonlit Crown','Royal Whisker'], payoutMultiplierBps: 50000 }, { payout: 50 }),
+      mines: base('mines', 'safe', { tile: 8, revealed: [1,3,8], currentMultiplierBps: 12200, payoutMultiplierBps: 0 }, { complete: false, payout: 0, state: { tileCount: 25, mineCount: 5, revealed: [1,3,8], currentMultiplierBps: 12200 } }),
+      'memory-match': base('memory-match', 'match', { flipped: { 2: 4, 11: 4 }, match: true, payoutMultiplierBps: 0 }, { complete: false, payout: 0, state: { cardCount: 16, matched: [2,11], faceUp: [], moves: 3 } }),
+      'klondike-solitaire': base('klondike-solitaire', 'deal', { variant: 'Klondike', payoutMultiplierBps: 0 }, { complete: false, payout: 0, state: { tableau: [[{hidden:true},card(13,'hearts')],[{hidden:true},{hidden:true},card(12,'clubs')],[card(11,'diamonds')],[card(10,'spades')],[card(9,'hearts')],[card(8,'clubs')],[card(7,'diamonds')]], stockCount: 24, wasteTop: card(14,'clubs'), foundations: { clubs: 1, diamonds: 0, hearts: 0, spades: 0 }, moves: 2 } }),
+      keno: base('keno', 'win', { picks: [7,14,21,28,35], drawn: [2,7,10,14,18,21,28,30,35,39,42,44,50,53,57,61,66,70,74,79], drawOrder: [42,7,74,14,30,61,21,2,53,28,66,18,35,79,10,57,39,70,44,50], matches: [7,14,21,28,35], matchCount: 5, payoutMultiplierBps: 3000000 }, { payout: 3000 }),
+      bingo: base('bingo', 'bingo', { card: bingoCard, drawn: [1,16,31,46,61,2,17,32,47,62,3,18,33,48,63,4,19,34,49,64,5,20,35,50,65,6,21,36,51,66], marked: bingoCard.map((row, r) => row.map((_, c) => r === 0 || (r === 2 && c === 2))), lines: 1, payoutMultiplierBps: 44400 }, { payout: 44 }),
+      'gem-drop': base('gem-drop', 'cluster_win', { grid: Array.from({ length: 6 }, (_, row) => Array.from({ length: 6 }, (_, col) => ['amethyst','ruby','topaz','pearl','emerald'][(row + col) % 5])), clusters: [{ row: 2, endColumn: 4, length: 3, gem: 'amethyst' }], payoutMultiplierBps: 25000 }, { payout: 25 }),
+      'scratch-cards': base('scratch-cards', 'match', { grid: ['crown','book','crown','star','crown','onion','book','crown','crown'], matchedSymbol: 'crown', matches: 5, practicePoints: 100, payoutMultiplierBps: 0 }, { payout: 0 }),
+      'lucky-cups': base('lucky-cups', 'found', { guess: 2, winner: 2, shuffleAnimation: [3,1,2], payoutMultiplierBps: 29000 }, { payout: 29 }),
+      pachinko: base('pachinko', 'landed', { slot: 8, path: [-1,1,1,-1,1,-1,1,1,-1,-1,1,-1,1,-1,1], multipliersBps: [500000,200000,80000,40000,20000,12000,7000,4300,4300,7000,12000,20000,40000,80000,200000,500000], payoutMultiplierBps: 4300 }, { payout: 4 }),
+    };
+
+    const picker = document.querySelector('#game-picker');
+    Object.keys(samples).forEach(slug => picker.add(new Option(slug.replaceAll('-', ' '), slug)));
+    const harnessParams = new URLSearchParams(location.search);
+    const requested = harnessParams.get('game');
+    const reducedMotion = harnessParams.get('reduced') === '1';
+    if (requested && samples[requested]) picker.value = requested;
+    let renderer = null;
+
+    async function show() {
+      window.visualHarnessReady = false;
+      window.visualHarnessError = null;
+      window.visualHarnessPhase = 'building';
+      document.documentElement.dataset.harnessPhase = 'building';
+      renderer?.destroy();
+      const host = document.querySelector('#visual-host');
+      host.replaceChildren();
+      host.closest('[data-game-client]').dataset.gameSlug = picker.value;
+      renderer = new OutcomeRenderer(host, {
+        slug: picker.value,
+        gameName: picker.options[picker.selectedIndex].text,
+        announcer: document.querySelector('#announcer'),
+        skipButton: document.querySelector('#skip'),
+        reducedMotion,
+      });
+      try {
+        window.visualHarnessPhase = 'animating';
+        document.documentElement.dataset.harnessPhase = 'animating';
+        await renderer.render(structuredClone(samples[picker.value]), { reducedMotion });
+        window.visualHarnessPhase = 'ready';
+        window.visualHarnessReady = true;
+        document.documentElement.dataset.harnessPhase = 'ready';
+      } catch (error) {
+        window.visualHarnessPhase = 'error';
+        window.visualHarnessError = String(error?.stack || error);
+        document.documentElement.dataset.harnessPhase = 'error';
+        document.documentElement.dataset.harnessError = String(error?.message || error);
+        throw error;
+      }
+    }
+
+    picker.addEventListener('change', show);
+    document.querySelector('#replay').addEventListener('click', show);
+    await show();
+  </script>
+</body>
+</html>
