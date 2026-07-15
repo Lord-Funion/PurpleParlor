@@ -1,0 +1,9 @@
+# Database Setup
+
+Production uses a dedicated cPanel MySQL/MariaDB database and user. Record the exact cPanel-prefixed database and username, discover the actual host, use `utf8mb4`, and grant privileges only on this database. The database-scoped grant must include `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `CREATE`, `DROP`, `INDEX`, `ALTER`, `REFERENCES`, and `TRIGGER`; the `TRIGGER` privilege is required for all eight database-enforced append-only ledger and audit guards. cPanel's **All Privileges** option is acceptable only for this dedicated database, never as a global user grant.
+
+Preferred installation is `php bin/migrate.php` over SSH or the protected installer. phpMyAdmin import of `database/schema.sql` is the fallback. Then run safe seeds once, back up the initial database, and run `php bin/system-check.php`.
+
+Migrations are ordered and recorded. Do not edit an already-applied production migration; add a new one. Every future schema change must use explicit, driver-aware incremental DDL (`ALTER TABLE`, `CREATE INDEX`, `CREATE TRIGGER`, and matching rollback/recovery notes as appropriate). `Schema::install()` can create a missing object but does not alter an existing table, so it must not be used as a substitute for an incremental `ALTER` migration. Back up before schema changes. Never repair wallet balances directly: run reconciliation and use an audited compensating ledger entry. Full cPanel steps are in Parts G and U of [SETUP_EVERYTHING.md](SETUP_EVERYTHING.md).
+
+After migration or phpMyAdmin import, run `php bin/system-check.php` and require both the critical-schema check and the `8 of 8 append-only trigger guards verified` result. A missing trigger is a release blocker; confirm the cPanel database user has database-scoped `TRIGGER`, then rerun the unapplied migration or restore from the verified pre-change backup rather than editing audit data.
