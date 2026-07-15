@@ -1,0 +1,16 @@
+/.env
+/config/app.php
+/vendor/
+/storage/backups/*
+/storage/cache/*
+/storage/logs/*
+/storage/sessions/*
+/storage/temporary/*
+!/storage/**/.gitkeep
+/deployment/*.zip
+/phpunit.xml
+*.log
+*.sqlite
+.DS_Store
+Thumbs.db
+
