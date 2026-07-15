@@ -1,0 +1,10 @@
+<?php
+return [
+ 'title'=>'Acceptable Use Policy','version'=>'draft-1','effective_date'=>'{{EFFECTIVE_DATE}}','summary'=>'Conduct that keeps {{SITE_NAME}} secure, fair, lawful, and comfortable.','sections'=>[
+  ['heading'=>'1. Respect people','items'=>['Do not harass, threaten, stalk, shame, exploit, discriminate against, or dox another person.','Do not impersonate others or misrepresent affiliation, age eligibility, authority, or payment status.','Do not post illegal, hateful, sexually exploitative, or privacy-invasive material.','Do not encourage minors to imitate real gambling or evade age controls.']],
+  ['heading'=>'2. Protect the service','items'=>['Do not attempt unauthorized access, injection, cross-site scripting, path traversal, credential attacks, or security-control bypass.','Do not disrupt availability, scrape excessively, send malware, probe secrets, or abuse contact forms.','Do not automate play, replay requests, exploit concurrency, manipulate client state, or interfere with server-authoritative outcomes.','Report suspected security issues privately to {{SUPPORT_EMAIL}} and do not expose user data.']],
+  ['heading'=>'3. Protect fictional balances','items'=>['Do not sell, transfer, trade, broker, or claim monetary value for Cozy Coins, Parlor Stars, accounts, or rewards.','Do not create multiple accounts or manipulate device time to duplicate grants.','Do not exploit game or ledger errors; report them without spending duplicated fictional balances.']],
+  ['heading'=>'4. Intellectual property','paragraphs'=>['Do not copy, redistribute, republish, resell, sublicense, remove notices from, or create a competing service using proprietary source, branding, artwork, layouts, or documentation except with written permission or rights granted by law.']],
+  ['heading'=>'5. Enforcement and appeal','paragraphs'=>['Proportionate responses may include warnings, content removal, fictional-ledger correction, feature restriction, suspension, or termination. Serious security or legal issues may be preserved and reported as required. Contact {{SUPPORT_EMAIL}} to ask for review.']],
+ ],
+];
