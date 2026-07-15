@@ -1,0 +1,6 @@
+<?php
+$emailEsc=static fn(mixed $value):string=>htmlspecialchars((string)$value,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');
+$emailTitle='Reset your Purple Parlor password'; $emailPreheader='A short-lived account recovery link.';
+ob_start(); ?>
+<p style="margin:0 0 8px;color:#e8b85d;font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase">Account recovery</p><h1 style="margin:0 0 16px;font-family:Georgia,serif;font-size:32px">Reset your password</h1><p style="margin:0 0 20px;color:#ddd0e6;line-height:1.6">A password reset was requested for your account. The response screen does not reveal whether an email is registered.</p><p style="margin:24px 0;text-align:center"><a href="<?= $emailEsc($resetUrl??'#') ?>" style="display:inline-block;border-radius:999px;background:#e8b85d;color:#241207;font-weight:bold;padding:13px 24px;text-decoration:none">Choose a new password</a></p><p style="margin:0 0 10px;color:#ac9ab8;font-size:13px">The link expires in <?= $emailEsc($expiresIn??'30 minutes') ?> and can be used once.</p><p style="margin:0;color:#ac9ab8;font-size:13px">If you did not request this, leave your password unchanged. Contact support if you see other suspicious account activity.</p>
+<?php $emailContent=(string)ob_get_clean(); require __DIR__.'/layout.php';
