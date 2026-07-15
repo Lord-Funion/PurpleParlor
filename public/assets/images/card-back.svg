@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 336" role="img" aria-label="Purple Parlor card back">
+  <defs><pattern id="p" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="30" height="30" fill="#42194e"/><path d="M0 15h30M15 0v30" stroke="#6e347c" stroke-width="2"/><circle cx="15" cy="15" r="4" fill="#d7a958"/></pattern></defs>
+  <rect x="2" y="2" width="236" height="332" rx="22" fill="#fff3d2" stroke="#d7a958" stroke-width="4"/>
+  <rect x="13" y="13" width="214" height="310" rx="15" fill="url(#p)" stroke="#d7a958" stroke-width="3"/>
+  <rect x="39" y="55" width="162" height="226" rx="58" fill="#24102e" fill-opacity=".92" stroke="#efd083" stroke-width="4"/>
+  <path d="M79 148c-5 50 13 87 41 98 29-11 47-48 42-98-4-35-24-49-42-76-18 27-38 41-41 76Z" fill="#8d48a9" stroke="#e9bd64" stroke-width="3"/>
+  <path d="m71 84 11-23 27 20 17-23 17 23 26-16-8 38H76Z" fill="#e8b85d"/>
+</svg>
