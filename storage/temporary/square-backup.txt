@@ -1,0 +1,3 @@
+Backup: /home/r5xegw92uu6o/purple-parlor/storage/backups/purple-parlor-20260714-190415-03784d89.sql
+SHA-256: 81f7d2de153aae71e52a568eb6a1b921b0e8330a5fd1c6124c1599079a77d817
+Bytes: 215964
