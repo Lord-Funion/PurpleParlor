@@ -1,0 +1,13 @@
+<?php
+return [
+ 'title'=>'Refund Policy','version'=>'draft-2','effective_date'=>'{{EFFECTIVE_DATE}}','summary'=>'How refund requests for memberships and fixed digital products are reviewed.','important_notice'=>'This template must be aligned with provider rules, consumer law, product descriptions, membership daily-grant disclosures, and the Adult Owner’s approved refund window before payments are enabled.',
+ 'sections'=>[
+  ['heading'=>'1. Scope','paragraphs'=>['This policy applies only to legitimate charges for optional memberships and fixed, nonconsumable digital products. Cozy Coins and Parlor Stars are not sold separately. A membership may include the fixed daily Cozy Coin amount disclosed before checkout; coins remain nontransferable play-money with no cash value. Paid spins, paid bets, and randomized paid rewards are not offered.']],
+  ['heading'=>'2. Requesting a refund','paragraphs'=>['Contact {{SUPPORT_EMAIL}} through billing support with the safe receipt reference, approximate date, item, and reason. Do not send a full card number, bank information, password, identity document, or provider secret.']],
+  ['heading'=>'3. Review factors','items'=>['Applicable consumer law and payment-provider requirements.','Whether the charge is duplicate, unauthorized, technically failed, misdescribed, or already refunded.','Whether a fixed digital entitlement was delivered or substantially used, where legally relevant.','The published refund window and any mandatory cooling-off or cancellation rights.']],
+  ['heading'=>'4. Subscription cancellation is different','paragraphs'=>['Cancelling stops future renewal but does not automatically refund a completed billing period. A refund request is reviewed separately. Benefits normally continue to the paid-through date unless refunded, disputed, or otherwise adjusted.']],
+  ['heading'=>'5. Approved refunds','paragraphs'=>['Approved refunds return through the original provider when possible. Processing time is controlled partly by that provider and financial institution. Related paid entitlements may be removed or adjusted when the refund is recorded. Free access remains.']],
+  ['heading'=>'6. Disputes and duplicate events','paragraphs'=>['Payment disputes may temporarily restrict the related entitlement while reviewed. Webhook and callback processing is idempotent; repeated notifications must not create duplicate access or refund actions.']],
+  ['heading'=>'7. Contact and escalation','paragraphs'=>['Contact {{SUPPORT_EMAIL}}. The Adult Owner or authorized support administrator reviews payment records with sensitive values redacted. Nothing in this policy limits nonwaivable legal rights.']],
+ ],
+];
