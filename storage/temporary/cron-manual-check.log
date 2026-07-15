@@ -1,0 +1,49 @@
+{
+    "status": "completed",
+    "mail": {
+        "sent": 0,
+        "failed": 0
+    },
+    "subscriptions": {
+        "checked": 0,
+        "updated": 0,
+        "errors": []
+    },
+    "expired_grace_periods": 0,
+    "expired_entitlements": 0,
+    "membership_bonuses": {
+        "checked": 0,
+        "eligible": 0,
+        "granted": 0,
+        "already_granted": 0,
+        "coins_granted": 0,
+        "reward_date": "2026-07-14"
+    },
+    "retried_webhooks": 0,
+    "missions": {
+        "expired": 0,
+        "created": 0,
+        "daily_created": 0,
+        "weekly_created": 0
+    },
+    "backup": {
+        "status": "not_due"
+    },
+    "cleanup": {
+        "sessions": 10,
+        "remember_tokens": 0,
+        "rate_limits": 0,
+        "idempotency": 0,
+        "webhook_payloads": 0,
+        "analytics": 0,
+        "temporary_files": 0
+    },
+    "health": {
+        "status": "healthy",
+        "passed": 31,
+        "total": 31,
+        "failed": [],
+        "persisted": true,
+        "checked_at": "2026-07-14 21:39:40"
+    }
+}
