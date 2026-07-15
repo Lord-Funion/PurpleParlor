@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="purple-parlor" data-appearance="dark">
+<head>
+  <meta charset="utf-8">
+  <title>Game visual correctness harness</title>
+  <link rel="stylesheet" href="/public/assets/css/game-visuals.css">
+  <link rel="stylesheet" href="/public/assets/css/plinko-board.css">
+</head>
+<body>
+  <div id="ready"></div>
+  <div id="scatter"></div>
+  <div id="baccarat"></div>
+  <div id="number"></div>
+  <div id="wheel"></div>
+  <div id="scratch"></div>
+  <div id="plinko"></div>
+  <script type="module">
+    import { GameVisualRenderer } from '/public/assets/js/games/game-visuals.js';
+    import { PlinkoBoard } from '/public/assets/js/games/plinko-board.js';
+
+    const complete = (slug, display) => ({ slug, outcome: 'win', complete: true, payout: 1, display });
+    const card = (rank, suit) => ({ rank, suit, label: `${rank} of ${suit}` });
+    const failures = [];
+    const check = (condition, message) => { if (!condition) failures.push(message); };
+
+    new GameVisualRenderer(document.querySelector('#ready'), { slug: 'five-reel-video-slots' })
+      .render({ slug: 'five-reel-video-slots', outcome: 'ready', complete: false });
+    check(document.querySelector('#ready .pp-result-badge')?.textContent === 'Ready to play', 'Ready state has an in-progress badge');
+
+    const scatterGrid = [
+      ['scatter', 'moon', 'book'], ['crown', 'scatter', 'lavender'], ['moon', 'book', 'scatter'],
+      ['wild', 'moon', 'ember'], ['crown', 'scatter', 'onion'],
+    ];
+    new GameVisualRenderer(document.querySelector('#scatter'), { slug: 'five-reel-video-slots' })
+      .render(complete('five-reel-video-slots', { grid: scatterGrid, lineWins: [], scatters: 4 }));
+    const highlighted = [...document.querySelectorAll('#scatter .pp-slot-symbol.is-winning')];
+    check(highlighted.length === 4 && highlighted.every(node => node.classList.contains('pp-slot-symbol--scatter')), 'Scatter-only win does not highlight every scatter');
+
+    new GameVisualRenderer(document.querySelector('#baccarat'), { slug: 'baccarat' }).render(complete('baccarat', {
+      playerCards: [card(8, 'hearts'), card(2, 'clubs')], bankerCards: [card(7, 'spades'), card(3, 'diamonds')],
+      playerTotal: 0, bankerTotal: 0,
+    }));
+    check([...document.querySelectorAll('#baccarat h4')].map(node => node.textContent).join('|') === 'Player|Banker', 'Baccarat sides are mislabeled or reversed');
+    check([...document.querySelectorAll('#baccarat dt')].map(node => node.textContent).join('|') === 'Player total|Banker total', 'Baccarat totals are mislabeled');
+
+    new GameVisualRenderer(document.querySelector('#number'), { slug: 'number-draw' })
+      .render(complete('number-draw', { number: 14, mode: 'range', guess: 17 }));
+    check(document.querySelector('#number .pp-number-guess strong')?.textContent === '10–19', 'Number Draw range does not show its selected band');
+
+    const wheel = new GameVisualRenderer(document.querySelector('#wheel'), { slug: 'prize-wheel', reducedMotion: true });
+    wheel.render(complete('prize-wheel', { segment: 11, segments: 16, segmentMultipliersBps: Array(16).fill(10000) }), { reducedMotion: true });
+    check(getComputedStyle(document.querySelector('#wheel .pp-wheel-disc')).transform !== 'none', 'Reduced-motion wheel did not reach its selected rotation');
+
+    const scratch = new GameVisualRenderer(document.querySelector('#scratch'), { slug: 'scratch-cards', reducedMotion: true });
+    scratch.render(complete('scratch-cards', { grid: Array(9).fill('crown'), matchedSymbol: 'crown', matches: 9 }), { reducedMotion: true });
+    check(Number(getComputedStyle(document.querySelector('#scratch .pp-scratch-foil')).opacity) === 0, 'Reduced-motion scratch foil still hides the result');
+
+    const multipliersBps = [141000, 69000, 31000, 15000, 7900, 4500, 3000, 4500, 7900, 15000, 31000, 69000, 141000];
+    const plinko = new PlinkoBoard(document.querySelector('#plinko'), { rows: 12, risk: 'medium', reducedMotion: true });
+    await plinko.renderOutcome({
+      slug: 'plinko', outcome: 'landed', complete: true, payout: 3,
+      result: { rows: 12, risk: 'medium', bin: 6, path: ['L','R','L','R','L','R','L','R','L','R','L','R'], payoutMultiplierBps: 3000 },
+      display: { rows: 12, risk: 'medium', bin: 6, path: ['L','R','L','R','L','R','L','R','L','R','L','R'], payoutMultiplierBps: 3000, multipliersBps },
+    });
+    const plinkoBoard = document.querySelector('#plinko .pp-plinko');
+    check(plinkoBoard?.dataset.reducedMotion === 'true' && plinkoBoard.classList.contains('is-landed'), 'Reduced-motion Plinko lacks its explicit final-state marker');
+    check(document.querySelector('#plinko .pp-plinko__bin.is-winner')?.dataset.bin === '6', 'Reduced-motion Plinko does not show the server-selected bin');
+    check(getComputedStyle(document.querySelector('#plinko .pp-plinko__star')).animationName === 'none', 'App-level reduced motion did not stop Plinko CSS animation');
+
+    document.documentElement.dataset.testStatus = failures.length ? 'failed' : 'passed';
+    document.documentElement.dataset.testFailures = failures.join(' | ');
+    document.body.append(Object.assign(document.createElement('output'), { id: 'test-result', textContent: failures.length ? failures.join('\n') : 'passed' }));
+  </script>
+</body>
+</html>
