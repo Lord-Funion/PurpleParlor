@@ -1,0 +1,21 @@
+{
+  "name": "The Purple Parlor",
+  "short_name": "Purple Parlor",
+  "description": "A cozy, play-money social casino and casino-game arcade created by Lord Funion.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#160c1f",
+  "theme_color": "#241331",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Game lobby", "short_name": "Games", "url": "/games", "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Daily rewards", "short_name": "Rewards", "url": "/rewards", "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Healthy play", "short_name": "Take a break", "url": "/responsible-play", "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }] }
+  ]
+}
