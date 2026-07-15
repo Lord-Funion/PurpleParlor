@@ -1,0 +1,6 @@
+<?php
+$emailEsc=static fn(mixed $value):string=>htmlspecialchars((string)$value,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');
+$emailTitle='Verify your new Purple Parlor email'; $emailPreheader='Confirm this address before it replaces the current account email.';
+ob_start(); ?>
+<p style="margin:0 0 8px;color:#e8b85d;font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase">Account security</p><h1 style="margin:0 0 16px;font-family:Georgia,serif;font-size:32px;line-height:1.15">Verify your new email</h1><p style="margin:0 0 20px;color:#ddd0e6;line-height:1.6">Hello <?= $emailEsc($recipientName??'Parlor guest') ?>. Open the one-time link below to make this the email address for your Purple Parlor account.</p><p style="margin:24px 0;text-align:center"><a href="<?= $emailEsc($verificationUrl??'#') ?>" style="display:inline-block;border-radius:999px;background:#e8b85d;color:#241207;font-weight:bold;padding:13px 24px;text-decoration:none">Verify new email</a></p><p style="margin:0;color:#ac9ab8;font-size:13px;line-height:1.5">This link expires in <?= $emailEsc($expiresIn??'60 minutes') ?>. Verifying it revokes every signed-in session, so you will sign in again with the new address. If you did not request this change, ignore this message and do not forward the link.</p>
+<?php $emailContent=(string)ob_get_clean(); require __DIR__.'/layout.php';
