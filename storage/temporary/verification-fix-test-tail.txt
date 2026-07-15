@@ -1,0 +1,20 @@
+[PASS] Tests\Security\SecurityTest::testContentSecurityPolicyKeepsInjectedHostScriptsBlocked
+[PASS] Tests\Services\CronDispatcherTest::testDailyAndWeeklyMissionRotationIsDeterministicAndIdempotent
+[PASS] Tests\Services\CronDispatcherTest::testCronPersistsAndReportsABoundedRedactedHealthSnapshot
+[PASS] Tests\Services\CronDispatcherTest::testBackupFailureReportCannotExposeAPrivatePath
+[PASS] Tests\Services\SystemHealthServiceTest::testCriticalSchemaAndEveryAppendOnlyTriggerAreVerified
+[PASS] Tests\Services\SystemHealthServiceTest::testPrivateConfigurationAndApacheProtectionsAreCheckedWithoutExposingPaths
+[PASS] Tests\Unit\DatabaseConnectionTest::testSqliteAcceptsAnAbsoluteFilesystemPath
+[PASS] Tests\Unit\EngagementProgressServiceTest::testAchievementsMissionsRulesAndLeaderboardProgressAreServerRecorded
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testSeededPlacementsAreFixedAndDisabledByDefault
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testAdvertisementRequiresEveryGateAndAPlacementSafeRoute
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testAdFreeEntitlementSuppressesAnOtherwiseEligiblePlacement
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testPremiumThemeRequiresAnActiveServerEntitlement
+[PASS] Tests\Unit\LegalAcceptanceServiceTest::testAcceptancesAreVersionedServerOwnedAndIdempotent
+[PASS] Tests\Unit\LegalAcceptanceServiceTest::testUnknownPolicyKeyFailsWithoutPartialAcceptance
+[PASS] Tests\Unit\VirtualLedgerServiceTest::testGrantWagerPayoutAndDuplicateAreIdempotent
+[PASS] Tests\Unit\VirtualLedgerServiceTest::testInsufficientBalanceAndNegativePreventionRollBack
+[PASS] Tests\Unit\VirtualLedgerServiceTest::testReconciliationAndAdminAdjustmentIntegrity
+
+93 passed, 0 failed.
+EXIT_CODE:0
