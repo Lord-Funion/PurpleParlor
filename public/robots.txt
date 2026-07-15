@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+
+# Indexing is intentionally disabled by default. The Adult Owner must approve
+# launch before changing this file. Always continue to disallow at least:
+# /admin/ /install/ /account/ /profile/ /settings/ /billing/ /api/ /webhooks/
