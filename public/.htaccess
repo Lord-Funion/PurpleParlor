@@ -1,0 +1,55 @@
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Preserve ACME certificate challenges while keeping all other dotfiles private.
+    RewriteRule "(^|/)\.(?!well-known(?:/|$))" - [F,L]
+
+    # Refuse common sensitive or server-side project artifacts if accidentally copied here.
+    RewriteRule "(?:^|/)(?:\.env(?:\..*)?|composer\.(?:json|lock)|phpunit\.xml|README(?:_FIRST)?\.md|LICENSE\.txt)$" - [F,L,NC]
+    RewriteRule "\.(?:bak|conf|dist|ini|log|md|phar|sql|sqlite|yml|yaml)$" - [F,L,NC]
+    RewriteRule "^(?:app|bin|config|database|docs|resources|storage|tests|vendor)(?:/|$)" - [F,L,NC]
+
+    # HTTPS redirect designed to avoid a proxy redirect loop.
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+    RewriteCond %{HTTP_HOST} !^(?:localhost|127\.0\.0\.1)(?::\d+)?$ [NC]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+
+    # Existing public files are served directly; all application routes use the front controller.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(self)"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set X-Permitted-Cross-Domain-Policies "none"
+    Header unset X-Powered-By
+
+    <FilesMatch "\.(?:css|js|svg|png|jpe?g|webp|avif|woff2?)$">
+        Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400"
+    </FilesMatch>
+    <FilesMatch "\.(?:php|html?)$">
+        Header set Cache-Control "no-store, private"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/manifest+json image/svg+xml
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+    AddType image/svg+xml .svg
+</IfModule>
+
+<FilesMatch "^(?:\.htaccess|\.user\.ini|error_log)$">
+    Require all denied
+</FilesMatch>
