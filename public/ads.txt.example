@@ -1,0 +1,9 @@
+# Advertising is disabled until an Adult Owner-controlled provider account has
+# approved this site. Do not rename this file to ads.txt until the advertising
+# provider supplies an exact authorized record.
+#
+# Format supplied by the approved provider:
+# advertising-system.example, PUBLISHER_ACCOUNT_ID, DIRECT, CERTIFICATION_AUTHORITY_ID
+#
+# Never place payment credentials, payout information, tax information, email
+# passwords, or application secrets in ads.txt.
