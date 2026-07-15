@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 144" role="img" aria-labelledby="title desc">
+  <title id="title">The Purple Parlor</title>
+  <desc id="desc">A crowned purple onion in a rounded gold emblem beside the Purple Parlor wordmark.</desc>
+  <defs>
+    <linearGradient id="onion" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c57ce4"/><stop offset=".52" stop-color="#7b3a9b"/><stop offset="1" stop-color="#48215d"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe3a1"/><stop offset="1" stop-color="#d89c3c"/></linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g transform="translate(6 4)">
+    <rect x="8" y="12" width="118" height="118" rx="38" fill="#22102e" stroke="url(#gold)" stroke-width="3"/>
+    <path d="M29 59C26 87 42 113 68 119c27-6 42-32 39-60-3-24-20-31-39-46-19 15-36 22-39 46Z" fill="url(#onion)" stroke="#e5b964" stroke-width="2"/>
+    <path d="M68 23c-9 12-22 22-23 39-1 22 8 40 23 52M68 23c9 12 22 22 23 39 1 22-8 40-23 52M68 23v91" fill="none" stroke="#e4b9ef" stroke-opacity=".53" stroke-width="2" stroke-linecap="round"/>
+    <path d="M68 23c-9-4-13-12-12-19 7 2 12 6 15 13 3-7 8-11 15-13 1 7-3 15-12 19" fill="#78a96c" stroke="#d9e6b5" stroke-width="1.5"/>
+    <path d="M43 12 50 0l16 11L76 0l12 12 14-8-4 20H44Z" fill="url(#gold)" stroke="#fff0bd" stroke-width="1.5" filter="url(#glow)" transform="translate(0 1)"/>
+    <circle cx="53" cy="15" r="2" fill="#7b3a9b"/><circle cx="73" cy="14" r="2" fill="#7b3a9b"/><circle cx="91" cy="16" r="2" fill="#7b3a9b"/>
+  </g>
+  <g transform="translate(148 27)">
+    <text x="0" y="21" fill="#e5b964" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="4">THE</text>
+    <text x="-2" y="65" fill="#fff3d2" font-family="Georgia,serif" font-size="49" font-weight="700" letter-spacing="-2">Purple Parlor</text>
+    <path d="M2 80h325" stroke="#8f5b9e" stroke-width="1"/>
+    <text x="2" y="102" fill="#d7c6df" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="600" letter-spacing="2.6">BY LORD FUNION · PLAY-MONEY LOUNGE</text>
+  </g>
+</svg>
