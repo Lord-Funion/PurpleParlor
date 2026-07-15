@@ -1,0 +1,18 @@
+Options -Indexes
+
+<IfModule mod_mime.c>
+    RemoveHandler .php .php2 .php3 .php4 .php5 .php7 .php8 .phtml .phar .cgi .pl .py .sh
+    RemoveType .php .php2 .php3 .php4 .php5 .php7 .php8 .phtml .phar .cgi .pl .py .sh
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Content-Security-Policy "default-src 'none'; img-src 'self'; media-src 'self'; style-src 'none'; sandbox"
+    <FilesMatch "\.(?:html?|svg|xml|txt|json)$">
+        Header always set Content-Disposition "attachment"
+    </FilesMatch>
+</IfModule>
+
+<FilesMatch "\.(?:php\d*|phtml|phar|cgi|pl|py|sh|shtml|htaccess|user\.ini)$">
+    Require all denied
+</FilesMatch>
