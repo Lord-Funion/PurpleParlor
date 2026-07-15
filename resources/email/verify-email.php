@@ -1,0 +1,6 @@
+<?php
+$emailEsc=static fn(mixed $value):string=>htmlspecialchars((string)$value,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');
+$emailTitle='Verify your Purple Parlor email'; $emailPreheader='Finish creating your play-money Parlor account.';
+ob_start(); ?>
+<p style="margin:0 0 8px;color:#e8b85d;font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase">One quick check</p><h1 style="margin:0 0 16px;font-family:Georgia,serif;font-size:32px;line-height:1.15">Verify your email</h1><p style="margin:0 0 20px;color:#ddd0e6;line-height:1.6">Hello <?= $emailEsc($recipientName??'Parlor guest') ?>. Confirm this address to save progress and use account features.</p><p style="margin:24px 0;text-align:center"><a href="<?= $emailEsc($verificationUrl??'#') ?>" style="display:inline-block;border-radius:999px;background:#e8b85d;color:#241207;font-weight:bold;padding:13px 24px;text-decoration:none">Verify email</a></p><p style="margin:0;color:#ac9ab8;font-size:13px;line-height:1.5">This link expires in <?= $emailEsc($expiresIn??'60 minutes') ?>. If you did not create an account, ignore this message. Never forward this link.</p>
+<?php $emailContent=(string)ob_get_clean(); require __DIR__.'/layout.php';
