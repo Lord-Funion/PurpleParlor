@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Royal Onion profile frame">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0b8"/><stop offset=".5" stop-color="#d49838"/><stop offset="1" stop-color="#7c4718"/></linearGradient></defs>
+  <circle cx="150" cy="150" r="132" fill="none" stroke="#5c266a" stroke-width="20"/><circle cx="150" cy="150" r="138" fill="none" stroke="url(#g)" stroke-width="8"/>
+  <path d="m85 33 19-30 38 27 22-29 24 29 35-22-10 55H93Z" fill="url(#g)" stroke="#fff0b8" stroke-width="3"/>
+  <g fill="#8f48a8" stroke="#e8b85d" stroke-width="3"><path d="M22 129c-8 31 3 56 26 66 23-10 34-35 26-66-4-18-16-28-26-42-10 14-22 24-26 42Z"/><path d="M226 129c-8 31 3 56 26 66 23-10 34-35 26-66-4-18-16-28-26-42-10 14-22 24-26 42Z"/></g>
+  <circle cx="150" cy="275" r="13" fill="#8e4ca8" stroke="#e8b85d" stroke-width="4"/>
+</svg>
