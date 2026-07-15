@@ -1,0 +1,31 @@
+[OK]   php_version                       8.4.21
+[OK]   extension_pdo                     loaded
+[OK]   extension_openssl                 loaded
+[OK]   extension_json                    loaded
+[OK]   extension_filter                  loaded
+[OK]   extension_session                 loaded
+[OK]   extension_mbstring                loaded
+[OK]   extension_pdo_mysql               loaded
+[OK]   recommended_curl                  loaded
+[OK]   recommended_fileinfo              loaded
+[OK]   recommended_intl                  loaded
+[OK]   recommended_sodium                loaded
+[OK]   database                          mysql
+[OK]   database_schema                   28 critical tables and 131 critical columns verified
+[OK]   append_only_triggers              8 of 8 append-only trigger guards verified
+[OK]   writable_storage_logs             storage/logs
+[OK]   writable_storage_cache            storage/cache
+[OK]   writable_storage_sessions         storage/sessions
+[OK]   writable_storage_temporary        storage/temporary
+[OK]   writable_storage_backups          storage/backups
+[OK]   private_config_placement          environment and configuration are outside the public document root
+[OK]   private_config_permissions        private configuration permissions are restrictive
+[OK]   apache_protection_files           4 of 4 required Apache protection files verified
+[OK]   app_key                           configured
+[OK]   debug                             disabled
+[OK]   secure_session_cookie             secure
+[OK]   mail_configuration                mail configured
+[OK]   cron_freshness                    2026-07-14 19:05:02
+[OK]   backup_freshness                  2026-07-14 19:04:15
+[OK]   disk_space                        875221 MiB free
+[OK]   payments_live_lock                locked/non-live
