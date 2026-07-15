@@ -1,0 +1,1 @@
+user_id|i:10;auth_session_id|i:49;auth_selector|s:24:"265adfab9e62d77eb4e696d4";auth_token|s:64:"a0213750c11ae5e4b8a9740d38be40c344c8d4f519845be777a1ce113235c2a9";authenticated_at|i:1784065801;_last_touch|i:1784065801;_csrf|a:1:{s:7:"default";a:2:{s:5:"token";s:64:"7547004956faf72056f52ddbb786cb9db4195ca2fb2ed3a4b66dbdfbd38c2a7c";s:7:"expires";i:1784073002;}}
