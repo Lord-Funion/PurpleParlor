@@ -1,0 +1,1 @@
+user_id|i:10;auth_session_id|i:85;auth_selector|s:24:"a5cc27967f63e5cdca721c17";auth_token|s:64:"cc6ec3b170fb07962b22e64d9cba72e3b2f77d4b044e38c49b7d475b67d0ebfc";authenticated_at|i:1784068630;_last_touch|i:1784068630;_flash|a:2:{s:7:"message";s:50:"Your password or two-factor code was not accepted.";s:4:"type";s:5:"error";}
