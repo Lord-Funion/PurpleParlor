@@ -1,0 +1,2 @@
+No syntax errors detected in /home/r5xegw92uu6o/purple-parlor/app/Mail/PhpMailerTransport.php
+No syntax errors detected in /home/r5xegw92uu6o/purple-parlor/app/Services/EntitlementService.php
