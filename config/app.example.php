@@ -1,0 +1,62 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'name' => env('APP_NAME', 'The Purple Parlor'),
+    'brand' => env('APP_BRAND', 'Lord Funion'),
+    'creator_name' => env('APP_CREATOR_NAME', env('APP_BRAND', 'Lord Funion')),
+    'tagline' => env('APP_TAGLINE', 'A cozy, play-money social casino and casino-game arcade.'),
+    'support_email' => env('APP_SUPPORT_EMAIL', env('MAIL_FROM_ADDRESS', 'support@example.invalid')),
+    'env' => env('APP_ENV', 'production'),
+    'debug' => env_bool('APP_DEBUG', false),
+    'url' => rtrim((string) env('APP_URL', 'http://127.0.0.1:8080'), '/'),
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'key' => env('APP_KEY', ''),
+    'minimum_age' => env_int('APP_MINIMUM_AGE', 18),
+    'legal_policy_version' => env_int('APP_LEGAL_POLICY_VERSION', 1),
+    'age_exit_url' => env('APP_AGE_EXIT_URL', 'https://www.google.com'),
+    'indexing_enabled' => env_bool('APP_INDEXING_ENABLED', false),
+    'asset_path' => '/' . trim((string) env('APP_ASSET_PATH', '/assets'), '/'),
+    'upload_max_bytes' => env_int('APP_UPLOAD_MAX_BYTES', 5242880),
+    'database' => [
+        'connection' => env('DB_CONNECTION', 'mysql'),
+        'host' => env('DB_HOST', '127.0.0.1'),
+        'port' => env_int('DB_PORT', 3306),
+        'database' => env('DB_DATABASE', 'purple_parlor'),
+        'username' => env('DB_USERNAME', ''),
+        'password' => env('DB_PASSWORD', ''),
+        'charset' => env('DB_CHARSET', 'utf8mb4'),
+    ],
+    'session' => [
+        'cookie' => env('SESSION_COOKIE', 'purple_parlor_session'),
+        'lifetime_minutes' => env_int('SESSION_LIFETIME_MINUTES', 120),
+        'secure' => env_bool('SESSION_SECURE', false),
+        'same_site' => env('SESSION_SAMESITE', 'Lax'),
+        'domain' => env('SESSION_DOMAIN', ''),
+        'path' => env('SESSION_PATH', '/'),
+        'storage_path' => env('SESSION_STORAGE_PATH', ''),
+        'remember_days' => env_int('REMEMBER_ME_DAYS', 30),
+        'privileged_minutes' => env_int('PRIVILEGED_SESSION_MINUTES', 15),
+    ],
+    'mail' => [
+        'driver' => env('MAIL_DRIVER', 'smtp'),
+        'host' => env('MAIL_HOST', ''),
+        'port' => env_int('MAIL_PORT', 587),
+        'username' => env('MAIL_USERNAME', ''),
+        'password' => env('MAIL_PASSWORD', ''),
+        'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+        'from_address' => env('MAIL_FROM_ADDRESS', 'support@example.invalid'),
+        'from_name' => env('MAIL_FROM_NAME', 'The Purple Parlor'),
+        'max_attempts' => env_int('MAIL_MAX_ATTEMPTS', 5),
+    ],
+    'logging' => [
+        'level' => env('LOG_LEVEL', 'warning'),
+        'max_files' => env_int('LOG_MAX_FILES', 14),
+    ],
+    'backup' => [
+        'path' => env('BACKUP_PATH', ''),
+        'retention_days' => env_int('BACKUP_RETENTION_DAYS', 30),
+        'cron_hour_utc' => env_int('CRON_BACKUP_HOUR_UTC', 5),
+    ],
+];
