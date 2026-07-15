@@ -1,0 +1,9 @@
+<?php
+$profileName = (string) ($user['display_name'] ?? $user['username'] ?? 'Parlor Guest');
+$profileInitial = mb_strtoupper(mb_substr($profileName, 0, 1));
+$profileSection = (string) ($profileSection ?? 'profile');
+?>
+<aside class="profile-sidebar card">
+    <div class="profile-summary"><div class="profile-avatar<?= !empty($user['cosmetics']['royal_frame'])?' cosmetic-royal-frame':'' ?>" aria-hidden="true"><?= $esc($profileInitial) ?><?php if(!empty($user['cosmetics']['animated_crown'])): ?><span class="cosmetic-crown">♛</span><?php endif; ?></div><div><h2 class="heading-md"><?= $esc($profileName) ?></h2><p class="muted">@<?= $esc((string)($user['username'] ?? 'guest')) ?></p></div><span class="tag tag-gold"><?= $esc((string)($user['membership_name'] ?? 'Free member')) ?></span><?php if(!empty($user['cosmetics']['founder_badge'])||!empty($user['cosmetics']['supporter_badge'])): ?><span class="tag"><?= !empty($user['cosmetics']['founder_badge'])?'Founder supporter':'Club supporter' ?></span><?php endif; ?></div>
+    <nav class="profile-nav" aria-label="Profile"><a<?= $profileSection==='profile' ? ' aria-current="page"' : '' ?> href="<?= $url('profile.show', [], '/profile') ?>">Overview</a><a<?= $profileSection==='stats' ? ' aria-current="page"' : '' ?> href="<?= $url('profile.stats', [], '/profile/statistics') ?>">Statistics</a><a<?= $profileSection==='settings' ? ' aria-current="page"' : '' ?> href="<?= $url('settings.index', [], '/settings') ?>">Settings</a><a<?= $profileSection==='sessions' ? ' aria-current="page"' : '' ?> href="<?= $url('profile.sessions', [], '/settings/sessions') ?>">Sessions & security</a><a<?= $profileSection==='data' ? ' aria-current="page"' : '' ?> href="<?= $url('account.export', [], '/account/export') ?>">Your data</a><a href="<?= $url('billing.index', [], '/billing') ?>">Billing</a></nav>
+</aside>
