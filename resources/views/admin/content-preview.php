@@ -1,0 +1,6 @@
+<?php
+$revision = is_array($data['revision'] ?? null) ? $data['revision'] : [];
+$body = (string) ($revision['body_text'] ?? '');
+?>
+<div class="admin-heading"><div><p class="eyebrow">Private preview</p><h1 class="heading-admin"><?= $esc((string) ($revision['title_text'] ?? 'Content revision')) ?></h1><p class="muted">Revision <?= $esc((string) ($revision['version_label'] ?? '')) ?> · <?= $esc(str_replace('_', ' ', (string) ($revision['status'] ?? 'draft'))) ?>. This authenticated preview does not publish the revision.</p></div><a class="button button-ghost" href="<?= $url('admin.content', [], '/admin/content') ?>">Back to content</a></div>
+<section class="card card-pad stack"><div class="notice notice-warning"><strong>Escaped plain-text preview.</strong><p>Placeholders remain visible here. At runtime, only allow-listed placeholders receive trusted values, and the result is escaped before HTML rendering.</p></div><p class="fine-print">Allowed placeholders: <?= $esc(implode(', ', array_map(static fn (string $token): string => '{{'.$token.'}}', (array) ($data['placeholders'] ?? [])))) ?></p><article class="prose"><h2><?= $esc((string) ($revision['title_text'] ?? '')) ?></h2><?php foreach ((preg_split('/\n{2,}/', trim($body), -1, PREG_SPLIT_NO_EMPTY) ?: []) as $paragraph): ?><p><?= nl2br($esc($paragraph), false) ?></p><?php endforeach; ?></article></section>
