@@ -1,0 +1,130 @@
+PASS  catalog contains exactly 40 unique launchable slugs
+PASS  every catalog game launches through its server strategy
+PASS  deterministic RNG is reproducible and bounded
+PASS  seed commitment and published test vector reproduce
+PASS  standard deck contains 52 unique cards
+PASS  blackjack ace totals and natural recognition are correct
+PASS  poker hand ranking orders all major categories
+PASS  wager validation rejects range increments and insufficient balance
+PASS  European roulette red wager pays exactly two times
+PASS  American double-zero exists and reduces outside-wager return
+PASS  classic slot matching payline uses disclosed onion payout
+PASS  Plinko path and bin are calculated only from server bounces
+PASS  mechanical games disclose the exact ordered visual multiplier strips
+PASS  Over Under D100 boundary and probability-adjusted payout are exact
+PASS  craps point transition persists and resolves
+PASS  baccarat fixed drawing table deals player third card correctly
+PASS  video poker hold-all straight flush pays disclosed amount
+PASS  Keno draws unique numbers and calculates five-spot matches
+PASS  Sic Bo triples correctly lose a Small wager
+PASS  Hi-Lo ties return the fictional wager
+PASS  Mines hidden positions never serialize to public JSON
+PASS  Mines validates duplicate tile actions and cashout transition
+PASS  invalid stateful actions fail without producing a payout
+PASS  Pyramid Solitaire treats Ace as one in a legal Queen-Ace pair
+PASS  solitaire wins publish each actual post-move board without retaining private state
+PASS  round state cannot be replayed under a different round id
+PASS  outcome signer is canonical and detects tampering
+PASS  engine response excludes private state and includes transition integrity
+Game tests: 28 passed, 0 failed, 28 total.
+[PASS] Tests\Admin\AdminControllerTest::testRequiredAdminRouteContractsExist
+[PASS] Tests\Admin\AdminControllerTest::testManagedContentWritesRequireCsrfAndTwoFactor
+[PASS] Tests\Admin\AdminControllerTest::testThemeTokensRequireSafeHexAndAccessibleContrast
+[PASS] Tests\Admin\AdminControllerTest::testUnexpectedRuntimeFailuresAreNeverFlashedVerbatim
+[PASS] Tests\Admin\AdminMutationServiceTest::testGameControlsDriveRuntimeCatalogAndRemainFictional
+[PASS] Tests\Admin\AdminMutationServiceTest::testRoleSafeguardsRequireOwnerAuthorityTwoFactorAndPreserveLastOwner
+[PASS] Tests\Admin\AdminMutationServiceTest::testRewardConfigurationIsRealButNeverRewritesCommittedLedger
+[PASS] Tests\Admin\AdminMutationServiceTest::testCatalogEntitlementsAndRefundTrackingStayLocalAndAudited
+[PASS] Tests\Admin\AdminMutationServiceTest::testWorkflowRegistryRequiresLegalApprovalBeforePublication
+[PASS] Tests\Admin\ManagedContentServiceTest::testLegalDraftIsolationAndAdultOwnerPublicationAuthorization
+[PASS] Tests\Admin\ManagedContentServiceTest::testEmailPlaceholdersAreAllowListedAndPublishedHtmlIsEscaped
+[PASS] Tests\Admin\ManagedContentServiceTest::testSourceTemplateFallbackAndRegistryPublishedLookupAreIndependentOfDraftWindow
+[PASS] Tests\Admin\ManagedContentServiceTest::testRollbackCreatesACloneAndRetainsHistoryWithAuditEvidence
+[PASS] Tests\Auth\AuthServiceTest::testRegistrationVerificationLoginLogoutAndSessionRegeneration
+[PASS] Tests\Auth\AuthServiceTest::testResentRegistrationVerificationLinksRemainUsableUntilOneSucceeds
+[PASS] Tests\Auth\AuthServiceTest::testRegistrationsForDifferentAddressesDoNotShareOneIpLockout
+[PASS] Tests\Auth\AuthServiceTest::testPasswordResetIsHashedSingleUseAndRevokesSessions
+[PASS] Tests\Auth\AuthServiceTest::testLockoutAndGenericUnknownReset
+[PASS] Tests\Auth\AuthServiceTest::testAdministratorTotpAndRecoveryCodes
+[PASS] Tests\Auth\AuthServiceTest::testAdministratorWithoutTwoFactorGetsRestrictedSetupSession
+[PASS] Tests\Auth\AuthServiceTest::testRememberedAdministratorMustReenterPasswordAndTwoFactorForAdminRoutes
+[PASS] Tests\Games\GameEngineTest::testCompleteStandaloneGameRuleSuite
+[PASS] Tests\Http\AccountPrivacyControllerTest::testLockedThemeCannotBePersistedUntilEntitlementIsActive
+[PASS] Tests\Http\AccountPrivacyControllerTest::testConsentBannerAndCookieUseOneCanonicalContract
+[PASS] Tests\Http\AccountPrivacyControllerTest::testStatisticsExportRequiresItsSpecificEntitlement
+[PASS] Tests\Http\AccountPrivacyControllerTest::testControllerExportUsesCompleteAccountServicePayload
+[PASS] Tests\Http\AccountPrivacyControllerTest::testDeletionKeepsTypedPasswordAndTwoFactorGuardsThenUsesFullPurge
+[PASS] Tests\Http\AccountPrivacyControllerTest::testEmailChangeQueuesBothMessagesAndVerificationRevokesSessions
+[PASS] Tests\Http\AccountPrivacyControllerTest::testIneligibleEmailChangeUsesGenericMessageAndRollsBack
+[PASS] Tests\Http\AccountPrivacyControllerTest::testTwoFactorSetupRefreshIsIdempotentAndConfirmationElevatesSession
+[PASS] Tests\Http\AccountPrivacyControllerTest::testProfileRejectsControlCharactersAndRedactsUnexpectedDatabaseErrors
+[PASS] Tests\Http\AccountPrivacyControllerTest::testPasswordPolicyAndUnexpectedFailuresUseFixedSafeMessages
+[PASS] Tests\Http\ClientPreferenceContractTest::testNewRoundConfirmationRunsBeforeAnyGameRequestAndIsNotDuplicated
+[PASS] Tests\Http\ClientPreferenceContractTest::testAccountPreferencesAreSafelyMappedWhileGuestsKeepLocalStorage
+[PASS] Tests\Http\GameClientInteractionContractTest::testEscapeSkipsVisualMotionWithoutAbortingAnAcceptedWagerRequest
+[PASS] Tests\Http\GameClientInteractionContractTest::testSolitaireIndexLimitsTrackSelectedPileTypes
+[PASS] Tests\Http\GameClientInteractionContractTest::testPyramidUiAndSubmissionBothEnforceTwoCardMaximum
+[PASS] Tests\Http\GameVisualContractTest::testEveryCatalogGameHasAnExplicitPolishedVisualContract
+[PASS] Tests\Http\GameVisualContractTest::testVisualsAnimateOnlyAuthoritativeServerFields
+[PASS] Tests\Http\GameVisualContractTest::testAnimationHasSkipReducedMotionAndQuietAnnouncements
+[PASS] Tests\Http\HttpSecurityAcceptanceTest::testKernelRejectsMissingCsrfBeforeAStateChangingHandlerRuns
+[PASS] Tests\Http\HttpSecurityAcceptanceTest::testKernelEnforcesAuthenticationAndDatabaseBackedPermissionDenial
+[PASS] Tests\Http\HttpSecurityAcceptanceTest::testRouterRejectsEncodedSlashBackslashAndNullTraversalParameters
+[PASS] Tests\Http\HttpSecurityAcceptanceTest::testProductionKernelExceptionResponseHidesSqlStackSecretsAndPaths
+[PASS] Tests\Http\HttpSecurityAcceptanceTest::testActualProfileTemplateEscapesHostileProfileText
+[PASS] Tests\Http\HttpSecurityAcceptanceTest::testForgedSquareWebhookIsRejectedByTheRealEndpointFlow
+[PASS] Tests\Http\HttpSecurityAcceptanceTest::testHtaccessContractsDenyIndexesSecretsAndPrivateTrees
+[PASS] Tests\Http\RouteContractTest::testEveryRouteHasARealControllerMethodAndAgeFormMatchesItsHandler
+[PASS] Tests\Http\RouteContractTest::testEmailChangeRouteAndReauthenticationFormStayAligned
+[PASS] Tests\Http\RouteContractTest::testStaticProfileRoutesPrecedeThePublicUsernameCatchAll
+[PASS] Tests\Http\RouteContractTest::testEveryStateChangingBrowserRouteUsesCsrfExceptVerifiedWebhooks
+[PASS] Tests\Http\RouteContractTest::testDynamicRoutesDoNotShadowLaterStaticRoutes
+[PASS] Tests\Http\RouteContractTest::testCheckoutAndRegistrationPostVersionedPolicyAcceptance
+[PASS] Tests\Payments\AdminRefundExecutionTest::testDemoFullRefundIsExecutedOnceAndPermanentlyAudited
+[PASS] Tests\Payments\AdminRefundExecutionTest::testPartialThenCumulativeFullRefundControlsEntitlementBoundary
+[PASS] Tests\Payments\AdminRefundExecutionTest::testAmbiguousProviderOutcomeRetriesWithSameIdempotencyKey
+[PASS] Tests\Payments\AdminRefundExecutionTest::testInvalidTransitionConfirmationAndOverRefundAreRejected
+[PASS] Tests\Payments\PaymentAuditHistoryTest::testUnauthorizedViewerGetsOnlyAggregateStatusAndAdultOwnerProjectionIsRedacted
+[PASS] Tests\Payments\PaymentReliabilityTest::testExplicitProductionDemoIsNoChargeAndFailsClosed
+[PASS] Tests\Payments\PaymentReliabilityTest::testServerCheckoutIntentReusesKeyAndPreventsDuplicateChargeRecord
+[PASS] Tests\Payments\PaymentReliabilityTest::testVerifiedLifecycleCompletionClosesPendingCheckoutIntent
+[PASS] Tests\Payments\PaymentReliabilityTest::testPayPalPlanCatalogUsesCurrentEnvironmentConfigurationWithoutSeedSync
+[PASS] Tests\Payments\PaymentReliabilityTest::testSquareSubscriptionUsesCustomerCardPlanAndEnvironmentScopedMapping
+[PASS] Tests\Payments\PaymentReliabilityTest::testReconciliationRepairsActiveRenewalPeriodAndEntitlementEnd
+[PASS] Tests\Payments\PaymentReliabilityTest::testLifecycleHandlesOutOfOrderCancellationExpirationRefundDisputeAndUnknownReferences
+[PASS] Tests\Payments\PaymentReliabilityTest::testProviderWebhookFixturesNormalizeIdentifiersStatusesAndMoney
+[PASS] Tests\Payments\PaymentReliabilityTest::testLiveProviderRequiresEnabledAdultOwnerAndBothLocks
+[PASS] Tests\Payments\PaymentsTest::testDemoPurchaseRequiresVerifiedWebhookAndDuplicateIsSafe
+[PASS] Tests\Payments\PaymentsTest::testDemoSubscriptionPersistsAcrossProviderInstancesAndLifecycle
+[PASS] Tests\Payments\PaymentsTest::testInvalidWebhookAndPaymentSafetyGate
+[PASS] Tests\Payments\PaymentsTest::testSquareSignatureUsesExactNotificationUrlAndBody
+[PASS] Tests\Security\InstallerAccountServiceTest::testCreatesBothAdministratorsWithDistinctNormalizedIdentities
+[PASS] Tests\Security\InstallerAccountServiceTest::testPrevalidationRejectsDuplicateNormalizedEmailsBeforeCreatingEitherAccount
+[PASS] Tests\Security\InstallerAccountServiceTest::testPrevalidationChecksTheSecondPasswordBeforeCreatingEitherAccount
+[PASS] Tests\Security\InstallerAccountServiceTest::testLateRoleFailureRollsBackBothAccountsAndAllRelatedRecords
+[PASS] Tests\Security\SecurityTest::testCsrfScopeAndRotation
+[PASS] Tests\Security\SecurityTest::testRateLimitingAndSafeRedirects
+[PASS] Tests\Security\SecurityTest::testRbacAndPreparedLookupRejectInjection
+[PASS] Tests\Security\SecurityTest::testSecretRedactionAndAgeCookiePrivacy
+[PASS] Tests\Security\SecurityTest::testContentSecurityPolicyKeepsInjectedHostScriptsBlocked
+[PASS] Tests\Services\CronDispatcherTest::testDailyAndWeeklyMissionRotationIsDeterministicAndIdempotent
+[PASS] Tests\Services\CronDispatcherTest::testCronPersistsAndReportsABoundedRedactedHealthSnapshot
+[PASS] Tests\Services\CronDispatcherTest::testBackupFailureReportCannotExposeAPrivatePath
+[PASS] Tests\Services\MembershipBonusServiceTest::testEligiblePlansReceiveExactlyOneConfiguredGrantPerUtcDay
+[PASS] Tests\Services\MembershipBonusServiceTest::testOverlappingProviderRowsUseOnlyTheHighestPlanBonus
+[PASS] Tests\Services\SystemHealthServiceTest::testCriticalSchemaAndEveryAppendOnlyTriggerAreVerified
+[PASS] Tests\Services\SystemHealthServiceTest::testPrivateConfigurationAndApacheProtectionsAreCheckedWithoutExposingPaths
+[PASS] Tests\Unit\DatabaseConnectionTest::testSqliteAcceptsAnAbsoluteFilesystemPath
+[PASS] Tests\Unit\EngagementProgressServiceTest::testAchievementsMissionsRulesAndLeaderboardProgressAreServerRecorded
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testSeededPlacementsAreFixedAndDisabledByDefault
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testAdvertisementRequiresEveryGateAndAPlacementSafeRoute
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testAdFreeEntitlementSuppressesAnOtherwiseEligiblePlacement
+[PASS] Tests\Unit\EntitlementAdvertisingTest::testPremiumThemeRequiresAnActiveServerEntitlement
+[PASS] Tests\Unit\LegalAcceptanceServiceTest::testAcceptancesAreVersionedServerOwnedAndIdempotent
+[PASS] Tests\Unit\LegalAcceptanceServiceTest::testUnknownPolicyKeyFailsWithoutPartialAcceptance
+[PASS] Tests\Unit\UrlGeneratorTest::testUnusedRouteParametersBecomeAnEncodedQueryString
+[PASS] Tests\Unit\VirtualLedgerServiceTest::testGrantWagerPayoutAndDuplicateAreIdempotent
+[PASS] Tests\Unit\VirtualLedgerServiceTest::testInsufficientBalanceAndNegativePreventionRollBack
+[PASS] Tests\Unit\VirtualLedgerServiceTest::testReconciliationAndAdminAdjustmentIntegrity
+
+99 passed, 0 failed.
