@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript module smoke test</title>
+</head>
+<body>
+  <output id="result">loading</output>
+  <script type="module">
+    const modules = [
+      '/public/assets/js/parlor.js',
+      '/public/assets/js/billing.js',
+      '/public/assets/js/games/api-client.js',
+      '/public/assets/js/games/game-client.js',
+      '/public/assets/js/games/game-visuals.js',
+      '/public/assets/js/games/outcome-renderer.js',
+      '/public/assets/js/games/plinko-board.js',
+    ];
+    try {
+      await Promise.all(modules.map(path => import(path)));
+      document.documentElement.dataset.testStatus = 'passed';
+      document.querySelector('#result').textContent = `${modules.length} modules imported`;
+    } catch (error) {
+      document.documentElement.dataset.testStatus = 'failed';
+      document.documentElement.dataset.testError = String(error?.message || error);
+      document.querySelector('#result').textContent = String(error?.stack || error);
+    }
+  </script>
+</body>
+</html>
