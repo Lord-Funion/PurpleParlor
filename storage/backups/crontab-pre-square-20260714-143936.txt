@@ -1,0 +1,5 @@
+MAILTO=""
+SHELL="/bin/bash"
+@reboot pm2 resurrect
+0 4 * * 1 /usr/bin/curl -fsS "https://dinoswords.lordfunion.dev/api/weekly-winner.php?token=ldsfgtpioumpoiuOUIHADFOUIHpouihDOUDHWX&force=1" >/dev/null 2>&1
+*/5 * * * * /usr/local/bin/php -q /home/r5xegw92uu6o/purple-parlor/bin/cron.php >/dev/null 2>&1
